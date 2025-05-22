@@ -3,7 +3,6 @@
     <p style="color: #555;">Manage your inventory categories, items, and variants.</p>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 20px;">
-        
         <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
             <h2 style="font-size: 0.9rem; color: #666;">Total Categories</h2>
             <p style="font-size: 2rem; font-weight: bold; color: #007BFF;">{{ $categoryCount }}</p>

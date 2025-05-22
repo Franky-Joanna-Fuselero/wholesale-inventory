@@ -10,19 +10,33 @@
 
     <!-- Styles -->
     <style>
-        body {
+        html, body {
+            height: 100%;
             margin: 0;
-            height: 100vh;
+            padding: 0;
+        }
+
+        body {
             font-family: Arial, sans-serif;
             background-color: #f1f1f1;
             display: flex;
             flex-direction: column;
         }
 
-        .layout {
+        .top-bar {
+            background: #003366;
+            color: white;
+            padding: 0.75rem 1rem;
             display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .layout {
             flex: 1;
+            display: flex;
             overflow: hidden;
+            min-height: 0; /* Fixes flex overflow issues */
         }
 
         aside {
@@ -31,6 +45,7 @@
             color: white;
             padding: 20px;
             transition: all 0.3s ease;
+            overflow-y: auto;
         }
 
         aside.collapsed {
@@ -68,7 +83,6 @@
         aside ul li a.active {
             background-color: #FFD100;
             color: #003366;
-            font-weight: bold;
         }
 
         main {
@@ -76,15 +90,6 @@
             padding: 1rem 2rem;
             overflow-y: auto;
             position: relative;
-        }
-
-        .top-bar {
-            background: #003366;
-            color: white;
-            padding: 0.75rem 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
         .toggle-btn, .btn {
@@ -106,18 +111,22 @@
         @media (max-width: 768px) {
             aside {
                 position: absolute;
-                z-index: 10;
-                height: 100%;
-                left: 0;
                 top: 0;
+                left: 0;
+                height: 100%;
+                z-index: 10;
                 box-shadow: 2px 0 6px rgba(0, 0, 0, 0.3);
+            }
+
+            .layout {
+                position: relative;
             }
         }
     </style>
 </head>
 <body>
     <div class="top-bar">
-        <button class="toggle-btn" onclick="toggleSidebar()">☰ Menu</button>
+        <button class="toggle-btn" onclick="toggleSidebar()" aria-label="Toggle sidebar">☰ Menu</button>
         <div>
             <a href="{{ url('/pos') }}" hx-get="/pos" hx-target="main" hx-push-url="true" class="btn">New Order</a>
         </div>
