@@ -1,0 +1,153 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.pos-container {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+/* LEFT PANE */
+.left-pane {
+    flex: 1;
+    padding: 2rem;
+    background: #fff8dc;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Form Elements */
+.form-grid {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #003B71;
+    font-size: 0.95rem;
+}
+
+.form-group input {
+    padding: 0.65rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: white;
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* ITEM LIST */
+.item-list {
+    background: white;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    height: 30%;
+    overflow-y: auto;
+}
+
+.item-list h3 {
+    margin-bottom: 0.5rem;
+    color: #003B71;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.25rem;
+}
+
+/* RIGHT PANE */
+.right-pane {
+    flex: 1;
+    padding: 2rem;
+    background-color: #003B71;
+    color: white;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* RECEIPT */
+.receipt {
+    background-color: #00254d;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05);
+}
+
+.receipt h2 {
+    margin-top: 0;
+    color: #FFD100;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* QUANTITY INPUT */
+.quantity-calculator {
+    margin-bottom: 1rem;
+}
+
+.quantity-calculator label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.quantity-calculator input {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid #fff;
+    background-color: #fff;
+}
+
+/* ACTION BUTTONS */
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.action-buttons button {
+    padding: 1rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    background-color: #FFD100;
+    color: #003B71;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.action-buttons button:hover {
+    background-color: #e6bf00;
+    transform: translateY(-2px);
+}
