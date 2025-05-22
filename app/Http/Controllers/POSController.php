@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\OrderItem;
+use Illuminate\Support\Facades\DB;
 
 class POSController extends Controller
 {
@@ -63,5 +66,31 @@ class POSController extends Controller
 
     return view('pos.partials.receipt', compact('item', 'qty', 'price', 'total', 'time'));
     }   
+
+    public function checkout(Request $request)
+    {
+    $request->validate([
+        'customer_id' => 'required|exists:customers,id',
+        'items' => 'required|array',
+        'items.*.id' => 'required|exists:item_variants,id',
+        'items.*.quantity' => 'required|integer|min:1',
+    ]);
+
+    DB::transaction(function () use ($request) {
+        $order = Order::create([
+            'customer_id' => $request->customer_id,
+        ]);
+
+        foreach ($request->items as $item) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'item_variant_id' => $item['id'],
+                'quantity' => $item['quantity'],
+            ]);
+        }
+    });
+
+    return redirect()->route('pos.index')->with('success', 'Order placed successfully!');
+    }
 
 }

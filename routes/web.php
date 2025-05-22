@@ -9,6 +9,11 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemVariantController;
 use App\Http\Controllers\POSOrderController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InventoryController;
+use App\Models\Category;
+use App\Models\Item;
+use App\Models\ItemVariant;
 
 // ✅ Public Routes
 Route::get('/', function () {
@@ -23,27 +28,23 @@ Route::post('/login', [LoginController::class, 'login']);
 
 // ✅ Protected Routes
 Route::middleware('auth')->group(function () {
-    // Dashboard (with HTMX handling)
-    Route::get('/dashboard', function (Request $request) {
-        if ($request->header('HX-Request')) {
-            return view('dashboard.partial');
-        } else {
-            return view('dashboard');
-        }
-    })->name('dashboard');
+
+    // ✅ Dashboard (with HTMX handling)
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Customers CRUD
     Route::resource('customers', CustomerController::class);
 
-    // Inventory Main Page
-    Route::get('/inventory', function () {
-        return view('inventory.index');
-    })->name('inventory');
+    // ✅ Inventory Main Page — use controller method only
+    Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory');
 
     // Inventory CRUD
     Route::resource('categories', CategoryController::class);
     Route::resource('items', ItemController::class);
     Route::resource('variants', ItemVariantController::class);
+
+    // POS checkout
+    Route::post('/pos/checkout', [POSController::class, 'checkout'])->name('pos.checkout');
 
     // POS Page
     Route::get('/pos', [POSController::class, 'index'])->name('pos');

@@ -74,9 +74,13 @@
                     <button type="button" onclick="voidItem()" class="btn btn-red">
                         ❌ Void Item
                     </button>
-                    <button type="submit" class="btn btn-green col-span-2">
-                        💰 Pay
-                    </button>
+                    <form id="checkout-form" method="POST" action="{{ route('pos.checkout') }}">
+                        @csrf
+                        <input type="hidden" name="customer_id" id="customer_id" value="">
+                        <input type="hidden" name="items" id="items-json">
+                        <button type="submit" class="btn btn-green w-full">💰 Pay</button>
+                    </form>
+
                 </div>
             </div>
         </div>
